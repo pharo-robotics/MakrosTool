@@ -1,0 +1,1 @@
+This command responds to 'makros' keyword and it uses an MTScriptRunner

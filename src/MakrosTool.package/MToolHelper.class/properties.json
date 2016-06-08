@@ -1,0 +1,17 @@
+{
+	"category" : "MakrosTool",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "SantiagoBragagnolo 6/8/2016 15:28",
+	"instvars" : [
+		"host",
+		"application",
+		"rosUrl",
+		"name" ],
+	"name" : "MToolHelper",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }

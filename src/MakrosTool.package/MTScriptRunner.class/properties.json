@@ -1,0 +1,14 @@
+{
+	"category" : "MakrosTool",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "SantiagoBragagnolo 6/8/2016 17:01",
+	"instvars" : [
+		"makros" ],
+	"name" : "MTScriptRunner",
+	"pools" : [
+		 ],
+	"super" : "SCScriptRunner",
+	"type" : "normal" }
