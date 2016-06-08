@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/usr/bin/pharo/pharo /usr/bin/makros/Pharo.image scale "$@"
