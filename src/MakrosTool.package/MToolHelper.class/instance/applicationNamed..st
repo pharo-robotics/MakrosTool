@@ -1,3 +1,3 @@
-as yet unclassified
+convenience - application build
 applicationNamed: aName
-	^ self executeIfApplicationIsNotYetInstalled: [ application := MakrosApplication named: aName atHost: self host onROS: self rosUrl ].
+	^ self executeIfApplicationIsNotYetInstalled: [ self application: (MakrosApplication named: aName atHost: self host onROS: self rosUrl) ]

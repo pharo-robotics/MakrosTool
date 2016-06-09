@@ -1,0 +1,3 @@
+*MakrosTool
+>> anOtherSymbol
+	^ self -> anOtherSymbol

@@ -1,3 +1,3 @@
-as yet unclassified
+accessing
 rosUrl: aStringURL
 	^ self executeIfApplicationIsNotYetInstalled: [ rosUrl := aStringURL ]

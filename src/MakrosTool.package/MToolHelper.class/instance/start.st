@@ -1,3 +1,3 @@
-as yet unclassified
+service
 start
 	^ self application start.

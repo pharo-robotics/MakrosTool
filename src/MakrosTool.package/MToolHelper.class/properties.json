@@ -9,7 +9,8 @@
 		"host",
 		"application",
 		"rosUrl",
-		"name" ],
+		"name",
+		"componentsDictionary" ],
 	"name" : "MToolHelper",
 	"pools" : [
 		 ],

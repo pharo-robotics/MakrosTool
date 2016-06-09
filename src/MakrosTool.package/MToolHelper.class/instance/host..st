@@ -1,3 +1,3 @@
-as yet unclassified
+accessing
 host: aHost
 	^ self executeIfApplicationIsNotYetInstalled: [ host := aHost ]

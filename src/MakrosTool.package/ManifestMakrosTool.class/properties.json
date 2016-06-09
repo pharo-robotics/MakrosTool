@@ -1,0 +1,15 @@
+{
+	"category" : "MakrosTool",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "<historical>",
+	"instvars" : [
+		"makros",
+		"system" ],
+	"name" : "ManifestMakrosTool",
+	"pools" : [
+		 ],
+	"super" : "PackageManifest",
+	"type" : "normal" }
