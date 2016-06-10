@@ -28,7 +28,7 @@ ifTrue: [
 	system stdout << 'Done!'.
 
 " ADD TO THE PATH "
-	system call: ' echo "export PATH=$PATH:/usr/bin/makros" >> ~/.bashrc '.
+	system call: ' echo "export PATH=\$PATH:/usr/bin/makros" >> ~/.bashrc '.
 ].
 
 

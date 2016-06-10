@@ -10,7 +10,8 @@
 		"application",
 		"rosUrl",
 		"name",
-		"componentsDictionary" ],
+		"componentsDictionary",
+		"system" ],
 	"name" : "MToolHelper",
 	"pools" : [
 		 ],

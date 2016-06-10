@@ -14,4 +14,7 @@ makros
 " Program Service "
 
 	
-(makros resolveComponent: #syncer) repeat: [ (makros resolveComponent: #echoer) echo: 'Shiny happy people holding hands ' , String crlf ]
+(makros resolveComponent: #syncer) repeat: [ (makros resolveComponent: #echoer) echo: 'Shiny happy people holding hands ' , String crlf ].
+
+
+

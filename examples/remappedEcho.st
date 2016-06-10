@@ -2,11 +2,12 @@
 
 makros name: #echoer theComponentCreatedBy: [ :app | MakrosEcho forApp: app ].
 
+makros applicationNamed: 'EchoerExample'.
+
 makros registerTopicRemap: '/echo' to: '/remapped/echo'.
 
 " Wiring up components "
 makros
-	applicationNamed: 'EchoerExample';
 	route: #echoer >> #echo toPublisherOn: '/echo';
 	start.
 

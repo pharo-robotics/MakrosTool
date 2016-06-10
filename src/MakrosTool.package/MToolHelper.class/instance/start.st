@@ -1,5 +1,6 @@
 service
 start
-	^ self application
+	self application
 		configure;
-		start
+		start.
+	system registerProcessToJoin: self application process
