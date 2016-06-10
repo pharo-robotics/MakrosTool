@@ -17,7 +17,7 @@ ifTrue: [
 	system stdout << 'Deploying Makros';cr.
 
 	#('Pharo.image' 'Pharo.changes')
-		do: [ :file | system workingDirectory / file  copyAllTo: makrosParentDirectory / file ].
+		do: [ :file | system pwd / 'cache' / file  copyAllTo: makrosParentDirectory / file ].
 
 	system stdout << 'Giving permissions to run';cr.
 

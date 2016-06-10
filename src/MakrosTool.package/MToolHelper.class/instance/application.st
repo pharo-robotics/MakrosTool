@@ -1,3 +1,3 @@
 accessing
 application
-	^ self executeIfApplicationIsNotYetInstalled: [ self applicationNamed: self name ] ifAlreadyInstalled: [  ]
+	^ self executeIfApplicationIsNotYetInstalled: [ self applicationNamed: self name ] ifAlreadyInstalled: [ application ]
