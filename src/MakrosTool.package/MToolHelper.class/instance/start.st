@@ -1,3 +1,5 @@
 service
 start
-	^ self application start.
+	^ self application
+		configure;
+		start
