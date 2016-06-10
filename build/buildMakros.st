@@ -7,19 +7,20 @@ Gofer it
 	configurationOf: 'Makros';
 	loadVersion: #bleedingEdge.
 
-"FileStream stdout << 'Installing Makros'; cr.
+FileStream stdout << 'Installing Makros'; cr.
+
 Gofer it
 	repository: (MCFileTreeRepository new 
-					directory: FileSystem workingDirectory / '..'/ 'src';
+					directory: system pwd / 'src';
 					yourself);
 	package: 'MakrosTool';
-	load."
+	load.
 
-FileStream stdout << 'Snapshotting'; cr.
-(system pwd / 'cache' )ensureCreateDirectory.
+(system pwd / 'cache' ) ensureCreateDirectory.
 
 
 system stdout << ' Building Makros image at'  << (system pwd / 'cache'/ 'Pharo') fullName << String cr.
+
 Smalltalk saveAs: system pwd /'cache'/ 'Pharo'.
 
 
