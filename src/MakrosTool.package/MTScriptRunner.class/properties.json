@@ -6,7 +6,9 @@
 		 ],
 	"commentStamp" : "SantiagoBragagnolo 6/8/2016 17:01",
 	"instvars" : [
-		"makros" ],
+		"makros",
+		"log",
+		"nodeName" ],
 	"name" : "MTScriptRunner",
 	"pools" : [
 		 ],

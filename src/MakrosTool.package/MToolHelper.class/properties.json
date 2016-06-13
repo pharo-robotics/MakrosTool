@@ -11,7 +11,8 @@
 		"rosUrl",
 		"name",
 		"componentsDictionary",
-		"system" ],
+		"system",
+		"namingTable" ],
 	"name" : "MToolHelper",
 	"pools" : [
 		 ],
