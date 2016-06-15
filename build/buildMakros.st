@@ -1,4 +1,4 @@
-#!/usr/bin/scale/scale
+#!/usr/bin/scale
 
 FileStream stdout << 'Installing Makros framework'; cr.
 
