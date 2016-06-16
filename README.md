@@ -1,7 +1,7 @@
 MakrosTool
 ==========
 
-MakrosTool is a an extention for Scale project for easy scripting based on Makros
+MakrosTool is a an extention for [Scale](https://github.com/guillep/Scale "Scale") project for easy scripting based on [Makros] (https://github.com/sbragagnolo/makros "Makros").
 
 
 
@@ -10,110 +10,131 @@ MakrosTool is a an extention for Scale project for easy scripting based on Makro
 Installing
 ----------
 
-For installing Scale you have to be SUDOER and to have internet connection. 
+For installing MakrosTool you have to be SUDOER and to have internet connection, and an Scale installation. If you do not have an Scale installation, please start here [Scale](https://github.com/guillep/Scale "Scale"), and comeback after having it :).
+
 
 ```bash
-git clone https://github.com/guillep/Scale
-cd Scale
-./build/build.sh
+git clone https://github.com/sbragagnolo/MakrosTool
+cd MakrosTool
+./build/buildMakros.st
 sudo ./build/install.st
 ```
 
-After this installation process, the scale bin path  will be added to the path global variable, using the current user .bashrc file. 
-
-Open a new terminal, or resource your .bashrc file. 
-
 ```bash
-	./Scale/examples/echoer.st
+	makros --version 
 ```
 
-For uninstall Scale you just need to execute 
+For uninstall MakrosTool you just need to execute 
 ```bash
-sudo ./Scale/build/uninstall.st
+sudo ./MakrosTool/build/uninstall.st
 ```
 
 
 Examples
--------
-
-You can find a lot more of examples in the examples directory. Here we show you a bunch of them
+--------
 
 
-#### Writing a program that interacts with stdin and stdout:
+#### Writing a simple echo node  
 
 ```smalltalk
-#!/usr/bin/scale
+#!/usr/bin/makros
 
-system stdout << 'I will echo everything you type. Type exit to exit';cr;cr.
+" Naming component. For facilitating the after configuration " 
 
-got := system stdin upTo: Character lf.
-[ got = 'exit' ] whileFalse: [
-	system stdout << got; cr.
-	got := system stdin upTo: Character lf.
-]
+makros name: #echoer theComponentCreatedBy: [ :app | MakrosEcho forApp: app ].
+
+" Wiring up components "
+makros
+	applicationNamed: 'EchoerExample';
+	route: #echoer >> #echo toPublisherOn: '/echo';
+	start.
+
+" Program Service "
+system repeat: [ 
+	(makros resolveComponent: #echoer) echo: 'Shiny happy people holding hands ' , String crlf 
+] each: 10 hz cycleDelay.
 ```
 
-#### Writing a program that calls ls -l
+
+Breaking this code in pieces
 
 ```smalltalk
-#!/usr/bin/scale
+#!/usr/bin/makros
 
-(system call: 'ls -l') lines do: [ :line |
-	system stdout << line.
-	system stdout cr.
-].
+" Naming component. For facilitating the after configuration " 
+
+makros name: #echoer theComponentCreatedBy: [ :app | MakrosEcho forApp: app ].
+
 ```
 
-#### Or doing the same directly in Pharo :D
+This first line registers a component creation block for with a name. This block will be executed when the application is built. This naming feature is for allowing to use names instead of variables.
+
+
 
 ```smalltalk
-#!/usr/bin/scale
 
-system pwd entries do: [ :entry |
-	system stdout << entry asString.
-	system stdout cr.
-].
+" Wiring up components "
+makros applicationNamed: 'EchoerExample'.
 ```
 
-Reference
--------
-TODO
+
+This second line forces the creation of an application named 'EchoerExample'. That means that our node will be named 'EchoerExample' in the ROS master node. 
+
+
+
+```smalltalk
+makros route: #echoer >> #echo toPublisherOn: '/echo'.
+```
+
+This line does two things in a row. It creates a Topic publisher component for the topic called '/echo'. And it connects the output port #echo of the component (locally named and previously defined) echoer to the input port (#outgoing) of the just created publisher component .
+
+
+```smalltalk
+makros start.
+```
+
+This start command makes the real route binding and it starts the Makros inner clock. 
+
+```smalltalk
+" Program Service "
+system repeat: [ 
+	(makros resolveComponent: #echoer) echo: 'Shiny happy people holding hands ' , String crlf 
+] each: 10 hz cycleDelay.
+```
+
+Finally it starts an new process that executes the given block in an infinite loop, each 100 milliseconds. (The enough time to aim to execute 10 times per second). 
+
+Since the #repeat:each: system message register the job execution to be joined in the end of the script, the 'main thread' get paused waiting for any finalization of the echoing thread.
+
+
+For watching the output of the example you can read the topic from the shell with the ros command 'rostopic' as following: 
+
+
+
+```bash
+$> rostopic echo /echo 
+data: Shiny happy people holding hands 
+
+---
+data: Shiny happy people holding hands 
+
+---
+data: Shiny happy people holding hands 
+...
+```
+
+
+
+
+
 
 Loading
 -------
 
 Wanting to code? 
-   For loading this project on a development image is really easy. Just execute the building script, it will give you as output an image in the directory called 'cache'. 
-   If you just want to install scale in an existing image, you just need to execute in this image the content of the building script installScale.st, located into the build folder. 
+   For loading this project on a development image is really easy. Just execute the building script, it will give you as output an image in the directory called 'cache', with Scale and MakrosTool installed :). 
+  
 
-
-```smalltalk
-
-Gofer it
-	smalltalkhubUser: 'Pharo' project: 'MetaRepoForPharo50';
-	configurationOf: 'OSProcess';
-	loadVersion: #stable.
-Gofer it
-	smalltalkhubUser: 'sbragagnolo' project: 'TaskIT2';
-	configurationOf: 'TaskIT2';
-	loadVersion: #bleedingEdge.
-Gofer it
-	smalltalkhubUser: 'sbragagnolo' project: 'TaskIT2';
-	configurationOf: 'TaskIT2Shell';
-	loadVersion: #bleedingEdge.
-Gofer it
-	smalltalkhubUser: 'Guille' project: 'Roll';
-	configurationOf: 'Roll';
-	loadVersion: #bleedingEdge.
-Gofer it
-	repository: (MCFileTreeRepository new 
-					directory: FileSystem workingDirectory / '..'/ 'src';
-					yourself);
-	package: 'Scale';
-	load.
-
-
-```
 
 Pay attention to change the address of the File repository for the Scale code. 
 
