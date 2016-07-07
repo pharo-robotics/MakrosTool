@@ -1,4 +1,4 @@
-#!/usr/bin/makros/makros
+#!/usr/bin/makros
 
 makros name: #echoer theComponentCreatedBy: [ :app | MakrosEcho forApp: app ].
 

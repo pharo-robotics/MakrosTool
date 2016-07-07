@@ -1,0 +1,14 @@
+{
+	"category" : "BaselineOfMakrosTool",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "BaselineOfMakrosTool",
+	"pools" : [
+		 ],
+	"super" : "BaselineOf",
+	"type" : "normal" }

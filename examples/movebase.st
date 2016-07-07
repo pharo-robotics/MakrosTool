@@ -1,4 +1,4 @@
-#!/usr/bin/makros/makros
+#!/usr/bin/makros
 
 
 makros name: #movebase theComponentCreatedBy: [ :app | Makros2DMoveBase setupIn: app ].
