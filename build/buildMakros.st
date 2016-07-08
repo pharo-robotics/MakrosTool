@@ -1,6 +1,7 @@
 #!/usr/bin/scale
 
-Smalltalk saveAs: (system pwd /'cache'/ 'Pharo') fullName.
+
+system saveImageAs: system pwd /'cache'/ 'Pharo'.
 
 Metacello new
   baseline: 'MakrosTool';
@@ -13,6 +14,11 @@ Metacello new
 system stdout << ' Building Makros image at'  << (system pwd / 'cache'/ 'Pharo') fullName << String cr.
 
 
-Smalltalk saveAs: (system pwd /'cache'/ 'Pharo') fullName.
+system saveAfterRun.
+
+
+
+
+
 
 

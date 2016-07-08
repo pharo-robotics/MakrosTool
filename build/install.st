@@ -24,7 +24,7 @@ ifTrue: [
 	
 	system call: 'chmod +x ', makrosFile fullName.
 	system call: 'chmod +x ', makrosUIFile fullName.
-	system call: 'chmod a+w ' , (makrosParentDirectory / 'Pharo.changes') fullName.
+	system call: 'chmod a-w ' , (makrosParentDirectory / 'Pharo.changes') fullName.
 	system stdout << 'Done!'.
 
 ].
