@@ -4,7 +4,7 @@ This command responds to 'makros' keyword and it uses an MTScriptRunner
 Class {
 	#name : #MTCommandLineHandler,
 	#superclass : #SCCommandLineHandler,
-	#category : 'MakrosTool'
+	#category : #MakrosTool
 }
 
 { #category : #'as yet unclassified' }
@@ -54,7 +54,7 @@ MTCommandLineHandler >> loadParameters [
 
 { #category : #'as yet unclassified' }
 MTCommandLineHandler >> loadSourceFile [
-	self loadSourceFiles: {(self commandLine arguments at: 1)}
+	self loadSourceFiles: {(self arguments at: 1)}
 ]
 
 { #category : #'as yet unclassified' }
