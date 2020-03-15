@@ -39,7 +39,7 @@ MTCommandLineHandler >> executeScripts [
 { #category : #'as yet unclassified' }
 MTCommandLineHandler >> loadParameters [
 	| pair variable value |
-	self commandLine arguments allButFirst
+	self arguments allButFirst
 		select: #isNotEmpty
 		thenDo: [ :arg | 
 			pair := ':=' split: (arg copyReplaceAll: '__' with: '').
