@@ -1,3 +1,0 @@
-*MakrosTool
-process
-	^ process

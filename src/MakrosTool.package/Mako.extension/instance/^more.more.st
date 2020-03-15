@@ -1,3 +1,0 @@
-*MakrosTool
->> aPortName
-	^ self -> aPortName 
