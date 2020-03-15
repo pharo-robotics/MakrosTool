@@ -125,7 +125,7 @@ MToolHelper >> resolveHostAddress [
 
 { #category : #accessing }
 MToolHelper >> rosUrl [
-	^ rosUrl ifNil: [ self rosUrl: (OSProcess thisOSProcess environmentAt: 'ROS_MASTER_URI') ]
+	^ rosUrl ifNil: [ self rosUrl: (OSEnvironment current at: 'ROS_MASTER_URI' ifAbsent: [ self error: ' Non ROS master URI have been configured before launching. Please check your ROS_MASTER_URI variable at .bashrc or whereever you configure this things' ]) ]
 ]
 
 { #category : #accessing }
