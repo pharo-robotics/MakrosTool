@@ -1,15 +1,16 @@
-#!/usr/bin/scale
+#!/usr/bin/env scale
 
 
 system stdout << 'Uninstalling makros tool' << String cr.
 
 
-makrosParentDirectory := '/usr/bin/makrosImage' asFileReference.
+makrosParentDirectory := system home / #bin / #makrosImage .
+
 makrosParentDirectory exists ifTrue: [ system call: ' rm -r ', makrosParentDirectory fullName  ].
 
-makrosX := '/usr/bin/makros' asFileReference. 
+makrosX := system home / #bin / #makros 
 
-makrosuiX := '/usr/bin/makros-ui' asFileReference. 
+makrosuiX := system home / #bin / #makros-ui. 
 
 makrosX exists ifTrue: [ system call: ' rm ', makrosX fullName  ].
 makrosuiX exists ifTrue: [ system call: ' rm ', makrosuiX fullName  ].

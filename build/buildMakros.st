@@ -1,4 +1,4 @@
-#!/usr/bin/scale
+#!/usr/bin/env scale
 system saveImageAs: system pwd /'cache'/ 'Pharo'.
 
 Metacello new

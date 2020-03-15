@@ -1,4 +1,2 @@
 #!/bin/bash
-
-
-/usr/bin/pharo/pharo-ui /usr/bin/makrosImage/Pharo.image makros "$@"
+/usr/bin/env pharo-ui ~/bin/makrosImage/Pharo.image makros "$@"

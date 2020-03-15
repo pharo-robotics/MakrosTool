@@ -1,9 +1,9 @@
-#!/usr/bin/scale
+#!/usr/bin/env scale
 
 " DEPLOY "
 system stdout << 'Deploying makros command';cr.
 
-makrosParentDirectory := '/usr/bin/makrosImage' asFileReference.
+makrosParentDirectory := system home / #bin / #makrosImage 
 
 makrosParentDirectory exists 
 ifTrue: [ 
