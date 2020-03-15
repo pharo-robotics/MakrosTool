@@ -118,9 +118,9 @@ MToolHelper >> resolveHostAddress [
 	^ OSEnvironment current
 		at: 'ROS_IP'
 		ifAbsent: [ OSEnvironment current
-				at: 'ROS_IP'
-				ifPresent: [ :nme | NetNameResolver addressForName: nme ]
-				ifAbsent: [ NetNameResolver localHostAddress ] ]
+				at: 'ROS_HOSTNAME'
+				ifPresent: [ :nme | NetNameResolver stringFromAddress: ( NetNameResolver addressForName: nme )]
+				ifAbsent: [ NetNameResolver localAddressString ] ]
 ]
 
 { #category : #accessing }
