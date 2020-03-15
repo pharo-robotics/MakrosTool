@@ -3,7 +3,7 @@
 " DEPLOY "
 system stdout << 'Deploying makros command';cr.
 
-makrosParentDirectory := system home / #bin / #makrosImage 
+makrosParentDirectory := system home / #bin / #makrosImage .
 
 makrosParentDirectory exists 
 ifTrue: [ 
