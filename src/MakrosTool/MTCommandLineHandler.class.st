@@ -30,16 +30,18 @@ MTCommandLineHandler >> createRunner [
 { #category : #'as yet unclassified' }
 MTCommandLineHandler >> executeScripts [
 	(Smalltalk isInteractive and: [ self commandLine arguments size = 1 and: [ self manageInteractive: self commandLine arguments ] ])
-		ifFalse: [ self loadSourceFile.
+		ifFalse: [ 
+			self loadSourceFile.
 			self loadParameters.
 			self installSourceFiles.
-			FileStream stdout cr ]
+			Stdio stdout cr 
+		]
 ]
 
 { #category : #'as yet unclassified' }
 MTCommandLineHandler >> loadParameters [
 	| pair variable value |
-	self arguments allButFirst
+	self commandLine arguments allButFirst
 		select: #isNotEmpty
 		thenDo: [ :arg | 
 			pair := ':=' split: (arg copyReplaceAll: '__' with: '').
@@ -48,13 +50,13 @@ MTCommandLineHandler >> loadParameters [
 					value := pair at: 2.
 					(self respondsTo: (variable , ':') asSymbol)
 						ifTrue: [ self perform: (variable , ':') asSymbol withArguments: {value} ]
-						ifFalse: [ self remap: variable to: value. ] ]
-				ifFalse: [ self halt ] ]
+						ifFalse: [ self remap: variable to: value ] ] ]
 ]
 
 { #category : #'as yet unclassified' }
 MTCommandLineHandler >> loadSourceFile [
-	self loadSourceFiles: {(self  arguments at: 1)}
+	
+	self loadSourceFiles: (self commandLine arguments select:[ : a | a endsWith:'.st' ])
 ]
 
 { #category : #'as yet unclassified' }
