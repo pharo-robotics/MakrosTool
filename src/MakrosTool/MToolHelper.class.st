@@ -13,7 +13,7 @@ Class {
 		'system',
 		'namingTable'
 	],
-	#category : 'MakrosTool'
+	#category : #MakrosTool
 }
 
 { #category : #accessing }
@@ -115,12 +115,24 @@ MToolHelper >> resolveComponent: aNameOrComponent [
 MToolHelper >> resolveHostAddress [
 	" First try to load the ROS_IP globar variable. If its not set up, use the ROS_HOSTNAME global variable. If it's not setup either of both previous variables, then ask for the Host address   "
 
-	^ ((OSProcess thisOSProcess environmentAt: 'ROS_IP') ifNil: [ NetNameResolver addressForName: (OSProcess thisOSProcess environmentAt: 'ROS_HOSTNAME') ]) ifNil: [ NetNameResolver localHostAddress ]
+	^ OSEnvironment current
+		at: 'ROS_IP'
+		ifAbsent: [ OSEnvironment current
+				at: 'ROS_HOSTNAME'
+				ifPresent: [ :nme | 
+					NetNameResolver
+						stringFromAddress: (NetNameResolver addressForName: nme) ]
+				ifAbsent: [ NetNameResolver localAddressString ] ]
 ]
 
 { #category : #accessing }
 MToolHelper >> rosUrl [
-	^ rosUrl ifNil: [ self rosUrl: (OSProcess thisOSProcess environmentAt: 'ROS_MASTER_URI') ]
+	^ rosUrl
+		ifNil: [ self
+				rosUrl:
+					(OSEnvironment current
+						at: 'ROS_MASTER_URI'
+						ifAbsent: [ self error:'Master configuration is not available. Please ensure that the ROS_MASTER_URI environment variable is setted up ' ]) ]
 ]
 
 { #category : #accessing }
