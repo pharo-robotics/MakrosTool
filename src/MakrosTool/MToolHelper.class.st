@@ -166,7 +166,8 @@ MToolHelper >> start [
 	self application
 		configure;
 		start.
-	system registerProcessToJoin: self application process
+	system
+		ifNotNil: [ system registerProcessToJoin: self application process ]
 ]
 
 { #category : #'as yet unclassified' }
